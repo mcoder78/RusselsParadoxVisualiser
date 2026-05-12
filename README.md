@@ -1,7 +1,7 @@
 # RusselsParadoxVisualiser
 A small simple visualization of Russels Paradox made for easy understanding. :)
 
-Bertrand Russel (1872-1970) was a profound British mathematician and philosopher highly known in the mathematical and philosophical world for his work in advancing set theory. He determined the fundamental rules concerning the requirements of establishing a set. Here, we will explore Russel’s rules that will lead to the contradictory conclusion he came to found known as: Russel’s paradox (1901). 
+Bertrand Russel (1872-1970) was a profound British mathematician and philosopher highly known in the mathematical and philosophical world for his work in advancing set theory. He determined the fundamental rules concerning the requirements of establishing a set. 
 
 Start with defining a set, a set is a collection of objects, for example:
 A set X is simply a collection of things, these things are referred to as the elements of set X. To describe a set formally we list it with curly braces surrounding the list as so:
