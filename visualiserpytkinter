@@ -12,7 +12,7 @@ def start_paradox():
         "are every single set that exists that doesn't include itself. If R does not contain R, "
         "it is therefore a set that doesn't contain itself, and must be a part of R. "
         "But if R is a part of R, it can't be included in R."
-        "Hence a contradiction D:"
+        " Hence a contradiction D:"
     )
 
     description = tk.Label(
