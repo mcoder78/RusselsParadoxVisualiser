@@ -1,0 +1,88 @@
+import tkinter as tk
+
+def start_paradox():
+    root = tk.Tk()
+    root.title("Russell's Paradox Visualisation")
+    root.configure(bg="#1e1e1e")
+    
+    running = True
+
+    desc_text = (
+        "Russell's Paradox - Let's say I have R which is a set of things, things in this set "
+        "are every single set that exists that doesn't include itself. If R does not contain R, "
+        "it is therefore a set that doesn't contain itself, and must be a part of R. "
+        "But if R is a part of R, it can't be included in R."
+        "
+        Hence a contradiction D:"
+    )
+
+    description = tk.Label(
+        root, 
+        text=desc_text, 
+        font=("Inter", 11), 
+        fg="#dcddde", 
+        bg="#2f3136", 
+        wraplength=460, 
+        justify="left",
+        padx=20,
+        pady=20,
+        relief="flat"
+    )
+    description.pack(pady=15, padx=15)
+    
+    canvas = tk.Canvas(root, width=500, height=350, bg="#1e1e1e", highlightthickness=0)
+    canvas.pack()
+
+    canvas.create_text(250, 20, text="R = { x | x ∉ x }", font=("Consolas", 18, "bold"), fill="#7289da")
+    canvas.create_text(250, 50, text="R ∈ R ⟺ R ∉ R", font=("Consolas", 14), fill="#b9bbbe")
+
+    canvas.create_oval(150, 100, 350, 300, outline="#7289da", width=2)
+    canvas.create_text(250, 85, text="Set of non-self-containing sets", fill="#7289da", font=("Inter", 9))
+    
+    r_element = canvas.create_text(420, 200, text="R", fill="#f04747", font=("Inter", 30, "bold"))
+    status_text = canvas.create_text(250, 330, text="Status: Ready", font=("Inter", 10), fill="#b9bbbe")
+
+    def toggle_logic():
+        nonlocal running
+        if not running: return
+        
+        curr_x, curr_y = canvas.coords(r_element)
+        
+        if curr_x > 350:
+            canvas.coords(r_element, 250, 200)
+            canvas.itemconfig(status_text, text="If R ∉ R, then by definition R ∈ R", fill="#43b581")
+        else:
+            canvas.coords(r_element, 420, 200)
+            canvas.itemconfig(status_text, text="If R ∈ R, then by definition R ∉ R", fill="#f04747")
+        
+        root.after(1200, toggle_logic)
+
+    def toggle_button():
+        nonlocal running
+        if running:
+            running = False
+            btn.config(text="▶ Resume Paradox", bg="#43b581", fg="white")
+        else:
+            running = True
+            btn.config(text="⏸ Pause Paradox", bg="#36393f", fg="#dcddde")
+            toggle_logic()
+
+    btn = tk.Button(
+        root, 
+        text="⏸ Pause Paradox", 
+        command=toggle_button, 
+        font=("Inter", 10, "bold"), 
+        bg="#36393f", 
+        fg="#dcddde", 
+        activebackground="#40444b",
+        activeforeground="white",
+        relief="flat",
+        padx=10,
+        pady=5
+    )
+    btn.pack(pady=20)
+
+    toggle_logic()
+    root.mainloop()
+
+start_paradox()
